@@ -52,6 +52,4 @@ class CheckoutPage
     notice = find('.notice').text
     expect(notice).to eql texto
   end
-
-
 end
