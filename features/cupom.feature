@@ -30,21 +30,33 @@ Cenário: Aplicar Desconto de 20%
     #     E o valor final da compra deve ser atualizado para R$ 25,99
 
 
-Cenário: Cupom expirado
+# Cenário: Cupom expirado
 
-Ao tentar usar um cupom expirado, o usuário deve receber uma notificação informando que o cupom está expirado.
-Nenhum desconto deve ser aplicado e o valor total da compra deve permanecer inalterado.
+# Ao tentar usar um cupom expirado, o usuário deve receber uma notificação informando que o cupom está expirado.
+# Nenhum desconto deve ser aplicado e o valor total da compra deve permanecer inalterado.
 
- Quando aplico o seguinte cupom "PROMO20" 
- Então devo ver a seguinte notificação "Cupom expirado!"
+#  Quando aplico o seguinte cupom "PROMO20" 
+#  Então devo ver a seguinte notificação "Cupom expirado!"
+#     E o valor final deve permanecer o mesmo
+
+
+# Cenário: Cupom Inválido
+
+# Ao tentar usar um cupom inválido, o usuário deve receber uma notificação informando que o cupom é inválido.
+# Nenhum desconto deve ser aplicado e o valor total da compra deve permanecer inalterado.
+
+# Quando aplico o seguinte cupom "PROMO100" 
+# Então devo ver a seguinte notificação "Cupom inválido!"
+#     E o valor final deve permanecer o mesmo
+
+@ddt
+Esquema do Cenário: Tentativa de aplicar o desconto
+
+Quando aplico o seguinte cupom "<cupom>" 
+Então devo ver a seguinte notificação "<saida>"
     E o valor final deve permanecer o mesmo
 
-
-Cenário: Cupom Inválido
-
-Ao tentar usar um cupom inválido, o usuário deve receber uma notificação informando que o cupom é inválido.
-Nenhum desconto deve ser aplicado e o valor total da compra deve permanecer inalterado.
-
-Quando aplico o seguinte cupom "PROMO100" 
-Então devo ver a seguinte notificação "Cupom inválido!"
-    E o valor final deve permanecer o mesmo
+Exemplos:
+|cupom    |saida          |
+|PROMO20  |Cupom expirado!|
+|PROMO100 |Cupom inválido!|
